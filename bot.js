@@ -2,21 +2,30 @@
 
 const Discord = require('discord.js');
 var bot = new Discord.Client();
-bot.on('message', function (message) {
+bot.on("message", message => {
+    if (message.author.bot) return;
+    // This is where we'll put our code.
+    if (message.content.indexOf("!") !== 0) return;
+   
+    const args = message.content.slice("!").trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
 
-    // send when have a event
-    if (message.content == '!atelier') {
+    if (command == '!atelier') {
         message.channel.send("\n lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH");
-        console.log(" someone send !atelier")
     } 
     // simple ping pong
-    if (message.content == 'ping') {
+    if (command == '!ping') {
         message.channel.send('pong')
     }
     // Send the user's avatar URL
-    if (message.content == '!avatar') {
+    if (command == '!avatar') {
         message.reply(message.author.displayAvatarURL());
     }
+    if (command === "!random") {
+        let i = args[0]; // Remember arrays are 0-based!
+        const random = Math.floor((Math.random() * i) + 1);
+        message.reply('le résultat est : '+random);
+      }
 });
 
-bot.login("ODI4MzU0NjYyNDgxNzg4OTU4.YGoXZQ.cGIn8OuZHpUWvmxvpBbG25jUBLA");
+bot.login("token");
