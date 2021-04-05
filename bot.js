@@ -1,5 +1,5 @@
 // My first discord bot :  
-//                                     -------- JACOLOT BOT --------
+//                                     -------- SIMON BOT --------
 // made by yannis-mlgrn the 05/04/21 
 
 const Discord = require('discord.js');
@@ -42,4 +42,4 @@ bot.on("message", message => {
 });
 
 // connect the bot ( YOU MUST HAVE A TOKEN )
-bot.login("token");
+bot.login("ODI4MzU0NjYyNDgxNzg4OTU4.YGoXZQ.G65p9h-Wf6mfshKe5wPznxKWcRk");

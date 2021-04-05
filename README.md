@@ -1,4 +1,4 @@
-#  jacolot bot
+#  SIMON bot
 
 ### how to install it :
 
