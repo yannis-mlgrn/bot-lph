@@ -5,6 +5,8 @@
 const Discord = require('discord.js');
 var bot = new Discord.Client();
 
+console.log("bot starting... \nmy github : https://github.com/yannis-mlgrn/bot-lph/ \nmade by yannis-mlglrn")
+
 // check all message
 bot.on("message", message => {
 
@@ -34,10 +36,10 @@ bot.on("message", message => {
         message.reply('le résultat est : '+random);
       }
     // when a user finish him message by the word "quoi" , the bot reply "feur"
-    if (message.content.endsWith("quoi")) {
-        message.channel.send('feur');
+    if (message.content.match(/quoi\s*[?!.,]*\s*$/i)) {
+        message.channel.send("feur");
     }
 });
 
 // connect the bot ( YOU MUST HAVE A TOKEN )
-bot.login("ODI4MzU0NjYyNDgxNzg4OTU4.YGoXZQ.LiIeWxsc8whODxj2oDSBScTJZjw");
+bot.login("token");
