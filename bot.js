@@ -4,6 +4,8 @@
 
 const Discord = require('discord.js');
 var bot = new Discord.Client();
+const config = require('./config.json');
+
 
 console.log("bot starting... \nmy github : https://github.com/yannis-mlgrn/bot-lph/ \nmade by yannis-mlglrn")
 
@@ -13,10 +15,13 @@ bot.on("message", message => {
     if (message.author.bot) return;
     // when message begin by a !
     //if (message.content.indexOf("!") !== 0) return;
-    
+
+    const config = require('./config.json');
     // cut the command for take all arguments
-    const args = message.content.slice("!").trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
+    const args = message.content.slice(config.prefix).trim().split(/ +/g);
+    const command = args.shift().toLowerCase()
+
+    const client = new Discord.Client();
 
     if (command == '!atelier') {
         message.channel.send("\n lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH");
@@ -29,6 +34,9 @@ bot.on("message", message => {
     if (command == '!avatar') {
         message.reply(message.author.displayAvatarURL());
     }
+    if (command == '!help') {
+        message.channel.send("les commandes :\n- !atelier : renvoi les liens importants (visio,pad...)\n- !random max : renvoi un nombre aléatoir entre 1 et le nombre inscrit\n- !avatar : renvoi l'image de ton avatar\n- !ping : le bot te répond pong\n- !yesno : créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote\n");
+    }
     // random command 
     if (command === "!random") {
         let i = args[0]; // Remember arrays are 0-based!
@@ -39,7 +47,19 @@ bot.on("message", message => {
     if (message.content.match(/quoi\s*[?!.,]*\s*$/i)) {
         message.channel.send("feur");
     }
+    if (command === "!yesno") {
+        // er --> "\"(.+?)\""g
+        var prefix = "!sondage";
+        const mess = message.content.slice(prefix.lenght).trim();
+        const q = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));
+        const question = q[0] ;
+        message.channel.send("nouveau sondage :");
+        message.channel.send("- "+question).then(sentMessage => {
+            sentMessage.react('👍');
+            sentMessage.react('👎');
+        });
+      }
 });
 
 // connect the bot ( YOU MUST HAVE A TOKEN )
-bot.login("ODI4MzU0NjYyNDgxNzg4OTU4.YGoXZQ.G65p9h-Wf6mfshKe5wPznxKWcRk");
+bot.login(config.token);
