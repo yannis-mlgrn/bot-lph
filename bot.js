@@ -1,12 +1,18 @@
-// My first discord bot
+// My first discord bot :  
+//                                     -------- JACOLOT BOT --------
+// made by yannis-mlgrn the 05/04/21 
 
 const Discord = require('discord.js');
 var bot = new Discord.Client();
+
+// check all message
 bot.on("message", message => {
+
     if (message.author.bot) return;
-    // This is where we'll put our code.
-    if (message.content.indexOf("!") !== 0) return;
-   
+    // when message begin by a !
+    //if (message.content.indexOf("!") !== 0) return;
+    
+    // cut the command for take all arguments
     const args = message.content.slice("!").trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
@@ -21,11 +27,17 @@ bot.on("message", message => {
     if (command == '!avatar') {
         message.reply(message.author.displayAvatarURL());
     }
+    // random command 
     if (command === "!random") {
         let i = args[0]; // Remember arrays are 0-based!
         const random = Math.floor((Math.random() * i) + 1);
         message.reply('le résultat est : '+random);
       }
+    // when a user finish him message by the word "quoi" , the bot reply "feur"
+    if (message.content.endsWith("quoi")) {
+        message.channel.send('feur');
+    }
 });
 
-bot.login("token");
+// connect the bot ( YOU MUST HAVE A TOKEN )
+bot.login("ODI4MzU0NjYyNDgxNzg4OTU4.YGoXZQ.LiIeWxsc8whODxj2oDSBScTJZjw");
