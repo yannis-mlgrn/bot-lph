@@ -18,6 +18,6 @@ run it :
 see all command ( in discord ) 
 - `!help`
 
-### how to add jacolot bot in you're server discord
+### how to add Simon bot in you're server discord
 
 - https://discord.com/api/oauth2/authorize?client_id=828354662481788958&permissions=8&scope=bot
