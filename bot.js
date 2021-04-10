@@ -1,12 +1,16 @@
 // My first discord bot :  
-//                                     -------- SIMON BOT --------
+//                                     -------- JACOBOT --------
 // made by yannis-mlgrn the 05/04/21 
 
+// import the discord lib and config
 const Discord = require('discord.js');
-var bot = new Discord.Client();
 const config = require('./config.json');
 
+// create the client
+var bot = new Discord.Client();
 
+
+// type info
 console.log("bot starting... \nmy github : https://github.com/yannis-mlgrn/bot-lph/ \nmade by yannis-mlglrn")
 
 // check all message
@@ -16,14 +20,14 @@ bot.on("message", message => {
     // when message begin by a !
     //if (message.content.indexOf("!") !== 0) return;
 
-    const config = require('./config.json');
     // cut the command for take all arguments
-    const args = message.content.slice(config.prefix).trim().split(/ +/g);
+    const args = message.content.slice(config.prefix).trim().split(/ +/s);
+
+    // take the command 
     const command = args.shift().toLowerCase()
 
-    const client = new Discord.Client();
-
     if (command == '!atelier') {
+        // send message with all important link
         message.channel.send("\n lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH");
     } 
     // simple ping pong
@@ -35,28 +39,28 @@ bot.on("message", message => {
         message.reply(message.author.displayAvatarURL());
     }
     if (command == '!help') {
+        // send all command and explain how to use it
         message.channel.send("les commandes :\n- !atelier : renvoi les liens importants (visio,pad...)\n- !random max : renvoi un nombre aléatoir entre 1 et le nombre inscrit\n- !avatar : renvoi l'image de ton avatar\n- !ping : le bot te répond pong\n- !yesno : créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote\n");
     }
     // random command 
     if (command === "!random") {
-        let i = args[0]; // Remember arrays are 0-based!
-        const random = Math.floor((Math.random() * i) + 1);
+        let i = args[0]; // get the first argument  
+        const random = Math.floor((Math.random() * i) + 1); // random command and return a int
         message.reply('le résultat est : '+random);
-      }
-    // when a user finish him message by the word "quoi" , the bot reply "feur"
-    if (message.content.match(/quoi\s*[?!.,]*\s*$/i)) {
-        message.channel.send("feur");
+    }
+    if (message.content.match(/quoi\s*[?!.,]*\s*$/i)) { // if the message finish by quoi the bot reply "feur !". I use a regular expression
+        message.channel.send("feur !"); // then send "feur !"
     }
     if (command === "!yesno") {
         // er --> "\"(.+?)\""g
-        var prefix = "!sondage";
         const mess = message.content.slice(prefix.lenght).trim();
-        const q = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));
+        const q = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));// get the content between "" 
         const question = q[0] ;
         message.channel.send("nouveau sondage :");
-        message.channel.send("- "+question).then(sentMessage => {
+        message.channel.send("- "+question).then(sentMessage => { // create content with user react
             sentMessage.react('👍');
             sentMessage.react('👎');
+            sentMessage.react('🍺');
         });
       }
 });
