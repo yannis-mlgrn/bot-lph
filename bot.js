@@ -19,6 +19,7 @@ bot.on('ready', () =>{
 	bot.user.setActivity('sors sors sors !')
 	console.log('[!] Connected!')
     console.log(`[!] Logged in as ${bot.user.tag}!`);
+    console.log('[!] Ready !')
 
 })
 bot.on("message", message => {
@@ -37,7 +38,13 @@ bot.on("message", message => {
 
     if (command == '!atelier') {
         // send message with all important link
-        message.channel.send("\n lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH");
+        //message.channel.send("\n lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH");
+        var msgatelier = new Discord.MessageEmbed()
+            .setColor('#E70739')
+            .setTitle("Liens importants pour les séances :")
+            .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
+            .setDescription("lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH")
+        message.channel.send(msgatelier);   
         console.log("[*] "+author+" send !atelier command");
     } 
     // simple ping pong
@@ -45,22 +52,41 @@ bot.on("message", message => {
         message.channel.send('pong')
         console.log("[*] "+author+" send !ping command");
     }
-    // Send the user's avatar URL
+    // Send the user's avatar URl
     if (command == '!avatar') {
-        message.reply(message.author.displayAvatarURL());
+        //message.reply(message.author.displayAvatarURL());
+        var msgavatar = new Discord.MessageEmbed()
+        .setColor('#E70739')
+        .setTitle("L'avatar de "+author+" :")
+        .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
+        .setImage(message.author.displayAvatarURL())
+        message.channel.send(msgavatar);
         console.log("[*] "+author+" send !avatar command");
     }
     if (command == '!help') {
         // send all command and explain how to use it
-        message.channel.send("les commandes :\n- !atelier : renvoi les liens importants (visio,pad...)\n- !random max : renvoi un nombre aléatoir entre 1 et le nombre inscrit\n- !avatar : renvoi l'image de ton avatar\n- !ping : le bot te répond pong\n- !yesno : créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote\n- !activity : change l'activitée du bot, ne pas oublier de mettre l'activitée entre les deux doubles cote\n");
+        //message.channel.send("les commandes :\n- !atelier : renvoi les liens importants (visio,pad...)\n- !random max : renvoi un nombre aléatoir entre 1 et le nombre inscrit\n- 
+        //!avatar : renvoi l'image de ton avatar\n- !ping : le bot te répond pong\n- !yesno : créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote\n- !activity : change l'activitée du bot, ne pas oublier de mettre l'activitée entre les deux doubles cote\n");
+        var msghelp = new Discord.MessageEmbed()
+        .setColor('#E70739')
+        .setTitle("les commandes du bot :")
+        .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
+        .setDescription("**!atelier :** renvoi les liens importants (visio,pad...)\n**!random max :** renvoi un nombre aléatoir entre 1 et le nombre inscrit\n **!avatar :** renvoi l'image de ton avatar\n**!ping :** le bot te répond pong\n**!yesno :** créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote")
+        message.channel.send(msghelp);
         console.log("[*] "+author+" send !help command");
     }
     // random command 
     if (command === "!random") {
         let i = args[0]; // get the first argument  
         const random = Math.floor((Math.random() * i) + 1); // random command and return a int
-        message.reply('le résultat est : '+random);
+        //message.reply('le résultat est : '+random);
         console.log("[*] "+author+" send !random command");
+        var msgrandom = new Discord.MessageEmbed()
+        .setColor('#E70739')
+        .setTitle("random :")
+        .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
+        .setDescription("chiffre aléatoire entre 0 et "+i+" .\n Le résultat est : "+"**"+random+"**")
+        message.channel.send(msgrandom);
     }
     if (message.content.match(/quoi\s*[?!.,]*\s*$/i)) { // if the message finish by quoi the bot reply "feur !". I use a regular expression
         message.channel.send("feur !"); // then send "feur !"
@@ -70,6 +96,7 @@ bot.on("message", message => {
         const mess = message.content.slice(config.prefix).trim();
         const q = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));// get the content between "" 
         const question = q[0] ;
+       /* 
         message.channel.send("nouveau sondage :");
         message.channel.send("- "+question).then(sentMessage => { // create content with user react
             sentMessage.react('👍');
@@ -77,7 +104,18 @@ bot.on("message", message => {
             sentMessage.react('🍺');
             console.log("[*] "+author+" send !yesno command");
         }
-        );   
+        );
+        */
+        var msgyesno = new Discord.MessageEmbed()
+        .setColor('#E70739')
+        .setTitle(":bar_chart: "+question)
+        .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
+        message.channel.send(msgyesno).then(sentMessage => { // create content with user react
+            sentMessage.react('👍');
+            sentMessage.react('👎');
+            sentMessage.react('🍺');
+        });
+        console.log("[*] "+author+" send !yesno command");
       }
       if (command === "!activity") {
         // er --> "\"(.+?)\""g
@@ -85,7 +123,13 @@ bot.on("message", message => {
         const z = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));// get the content between "" 
         const new_activity = z[0] ;
         bot.user.setActivity(new_activity)
-        message.channel.send('<@'+authorId+'>'+" à mis à jour l'activité du bot\n- Nouvelle activitée --> "+new_activity);
+        //message.channel.send('<@'+authorId+'>'+" à mis à jour l'activité du bot\n- Nouvelle activitée --> "+new_activity);
+        var msgact = new Discord.MessageEmbed()
+        .setColor('#E70739')
+        .setTitle(author+" à mis a jours l'activité du bot !")
+        .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
+        .setDescription("*nouvelle activitée* **-->** "+new_activity)
+        message.channel.send(msgact);
         console.log("[*] "+author+" send !activity command\n    -> New activity : "+new_activity);
       }
 });
