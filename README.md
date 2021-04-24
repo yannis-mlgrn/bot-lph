@@ -4,11 +4,11 @@
 
 download the git repository
 
-- `git clone https://github.com/yannis-mlgrn/bot-lph`
+- `git clone https://github.com/yannis-mlgrn/jacobot`
 
-install discord js
+install dependencies
 
-- `npm install discord.js`
+- `npm ci`
 
 ### how to start it :
 
