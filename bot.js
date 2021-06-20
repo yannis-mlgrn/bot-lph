@@ -127,6 +127,10 @@ bot.on("message", message => {
         message.channel.send(msgact);
         console.log(`[*] ${author} send !activity command\n    -> New activity : ${new_activity}`);
       }
+      if (command === "flm") {
+            message.channel.send("https://cdn.discordapp.com/attachments/835565603636248586/856257280466616400/out.mp4");
+            console.log(`[*] ${author} send !flm command`);
+      }
 });
 
 // connect the bot ( YOU MUST HAVE A TOKEN )
