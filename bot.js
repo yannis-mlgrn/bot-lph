@@ -52,12 +52,12 @@ bot.on("message", message => {
         console.log(`[*] ${author} sent !atelier command`);
     } 
     // simple ping pong
-    if (command === '!ping') {
+    if (command === 'ping') {
         message.channel.send('pong')
         console.log(`[*] ${author} sent !ping command`);
     }
     // Send the user's avatar URl
-    if (command === '!avatar') {
+    if (command === 'avatar') {
         //message.reply(message.author.displayAvatarURL());
         var msgavatar = new Discord.MessageEmbed()
         .setColor('#E70739')
@@ -126,6 +126,9 @@ bot.on("message", message => {
         .setDescription(`*nouvelle activitée* **-->** ${new_activity}`);
         message.channel.send(msgact);
         console.log(`[*] ${author} send !activity command\n    -> New activity : ${new_activity}`);
+      }
+      if (command === "flm") {
+        message.channel.send("https://cdn.discordapp.com/attachments/835565603636248586/856257280466616400/out.mp4");
       }
 });
 
