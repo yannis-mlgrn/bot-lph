@@ -52,12 +52,12 @@ bot.on("message", message => {
         console.log(`[*] ${author} sent !atelier command`);
     } 
     // simple ping pong
-    if (command === '!ping') {
+    if (command === 'ping') {
         message.channel.send('pong')
         console.log(`[*] ${author} sent !ping command`);
     }
     // Send the user's avatar URl
-    if (command === '!avatar') {
+    if (command === 'avatar') {
         //message.reply(message.author.displayAvatarURL());
         var msgavatar = new Discord.MessageEmbed()
         .setColor('#E70739')
