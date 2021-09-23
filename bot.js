@@ -6,9 +6,8 @@
 const { Client, Intents, MessageEmbed } = require('discord.js');
 const fs = require('fs');
 
-let configso = null;
 try {
-    configso = fs.readFileSync("./config.json").toString();
+    fs.readFileSync("./config.json").toString();
 } catch(e) {
     console.warn("Error when reading config (missing one ?), attempting to create a generic one, you'll need to put the bot's token inside.");
     fs.writeFileSync("./config.json", JSON.stringify({
