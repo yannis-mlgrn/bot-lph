@@ -3,7 +3,8 @@
 // made by yannis-mlgrn the 05/04/21 
 
 // import the discord lib and config
-const  {Client, Intents } = require('discord.js');
+const discord = require('discord.js');
+const { Client, Intents } = discord;
 const config = require('./config.json');
 
 // create the client
