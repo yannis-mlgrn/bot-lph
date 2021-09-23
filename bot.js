@@ -3,8 +3,7 @@
 // made by yannis-mlgrn the 05/04/21 
 
 // import the discord lib and config
-const discord = require('discord.js');
-const { Client, Intents } = discord;
+const { Client, Intents, MessageEmbed } = require('discord.js');
 const config = require('./config.json');
 
 // create the client
@@ -23,7 +22,7 @@ bot.on('ready', () =>{
     console.log('[!] Ready !');
 
 })
-bot.on("message", message => {
+bot.on("messageCreate", message => {
 
     if (message.author.bot) return;
     // when message begin by a !
@@ -31,7 +30,7 @@ bot.on("message", message => {
 
     const usedPrefix = message.content[0];
     // cut the command for take all arguments
-
+    const channel = message.channel;
     const args = message.content.substring(1, message.content.length).trim().split(/ +/s);
     // take the command 
     // kinda weird (and somewhat unoptimized) implementation, but is needed in order for prefixless commands to work
@@ -44,7 +43,7 @@ bot.on("message", message => {
     if (command == 'atelier') {
         // send message with all important link
         //message.channel.send("\n lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH");
-        var msgatelier = new Discord.MessageEmbed()
+        var msgatelier = new MessageEmbed()
             .setColor('#E70739')
             .setTitle('Liens importants pour les séances :')
             .setAuthor('Jacobot","https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif')
@@ -60,7 +59,7 @@ bot.on("message", message => {
     // Send the user's avatar URl
     if (command === 'avatar') {
         //message.reply(message.author.displayAvatarURL());
-        var msgavatar = new Discord.MessageEmbed()
+        var msgavatar = new MessageEmbed()
         .setColor('#E70739')
         .setTitle("L'avatar de "+author+" :")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
@@ -72,7 +71,7 @@ bot.on("message", message => {
         // send all command and explain how to use it
         //message.channel.send("les commandes :\n- !atelier : renvoi les liens importants (visio,pad...)\n- !random max : renvoi un nombre aléatoir entre 1 et le nombre inscrit\n- 
         //!avatar : renvoi l'image de ton avatar\n- !ping : le bot te répond pong\n- !yesno : créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote\n- !activity : change l'activitée du bot, ne pas oublier de mettre l'activitée entre les deux doubles cote\n");
-        var msghelp = new Discord.MessageEmbed()
+        const msghelp = new MessageEmbed()
         .setColor('#E70739')
         .setTitle("les commandes du bot :")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
@@ -86,7 +85,7 @@ bot.on("message", message => {
         const random = Math.floor((Math.random() * i) + 1); // random command and return a int
         //message.reply('le résultat est : '+random);
         console.log(`[*] ${author} sent !random command`);
-        var msgrandom = new Discord.MessageEmbed()
+        var msgrandom = new MessageEmbed()
         .setColor('#E70739')
         .setTitle("random :")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
@@ -102,7 +101,7 @@ bot.on("message", message => {
         const q = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));// get the content between "" 
         const question = q[0] ;
 
-        let msgyesno = new Discord.MessageEmbed()
+        let msgyesno = new MessageEmbed()
         .setColor('#E70739')
         .setTitle(":bar_chart: "+question)
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
@@ -120,7 +119,7 @@ bot.on("message", message => {
         const new_activity = z[0] ;
         bot.user.setActivity(new_activity);
         //message.channel.send('<@'+authorId+'>'+" à mis à jour l'activité du bot\n- Nouvelle activitée --> "+new_activity);
-        var msgact = new Discord.MessageEmbed()
+        var msgact = new MessageEmbed()
         .setColor('#E70739')
         .setTitle(author+" à mis a jours l'activité du bot !")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
