@@ -3,11 +3,11 @@
 // made by yannis-mlgrn the 05/04/21 
 
 // import the discord lib and config
-const Discord = require('discord.js');
+const  {Client, Intents } = require('discord.js');
 const config = require('./config.json');
 
 // create the client
-const bot = new Discord.Client();
+const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 // type info
 console.log('my github : https://github.com/yannis-mlgrn/bot-lph/ \nmade by yannis-mlglrn');
@@ -48,7 +48,7 @@ bot.on("message", message => {
             .setTitle('Liens importants pour les séances :')
             .setAuthor('Jacobot","https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif')
             .setDescription('lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH');
-        message.channel.send(msgatelier);   
+        channel.send({ embeds: [msgatelier] });  
         console.log(`[*] ${author} sent !atelier command`);
     } 
     // simple ping pong
@@ -64,7 +64,7 @@ bot.on("message", message => {
         .setTitle("L'avatar de "+author+" :")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
         .setImage(message.author.displayAvatarURL());
-        message.channel.send(msgavatar);
+        channel.send({ embeds: [msgavatar] });  
         console.log(`[*] ${author} sent !avatar command`);
     }
     if (command == 'help') {
@@ -76,7 +76,7 @@ bot.on("message", message => {
         .setTitle("les commandes du bot :")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
         .setDescription("**!atelier :** renvoi les liens importants (visio,pad...)\n**!random max :** renvoi un nombre aléatoir entre 1 et le nombre inscrit\n **!avatar :** renvoi l'image de ton avatar\n**!ping :** le bot te répond pong\n**!yesno :** créer un sondage de type yesno, ne pas oublier de mettre la question entre deux doubles cote");
-        message.channel.send(msghelp);
+        channel.send({ embeds: [msghelp] });  
         console.log(`[*] ${author} sent !help command`);
     }
     // random command 
@@ -90,7 +90,7 @@ bot.on("message", message => {
         .setTitle("random :")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
         .setDescription(`chiffre aléatoire entre 0 et ${i} .\n Le résultat est : **${random}**`);
-        message.channel.send(msgrandom);
+        channel.send({ embeds: [msgrandom] });  
     }
     if (message.content.match(/quoi\s*[?!.,]*\s*$/i) && message.author.id != '299165255639105536') { // if the message finish by quoi the bot reply "feur !". I use a regular expression
         message.channel.send("feur !"); // then send "feur !"
@@ -105,7 +105,7 @@ bot.on("message", message => {
         .setColor('#E70739')
         .setTitle(":bar_chart: "+question)
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
-        message.channel.send(msgyesno).then(sentMessage => { // create content with user react
+        channel.send({ embeds: [msgyesno] }).then(sentMessage => { // create content with user react
             sentMessage.react('👍');
             sentMessage.react('👎');
             sentMessage.react('🍺');
@@ -124,7 +124,7 @@ bot.on("message", message => {
         .setTitle(author+" à mis a jours l'activité du bot !")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
         .setDescription(`*nouvelle activitée* **-->** ${new_activity}`);
-        message.channel.send(msgact);
+        channel.send({ embeds: [msgact] });  
         console.log(`[*] ${author} send !activity command\n    -> New activity : ${new_activity}`);
       }
       if (command === "flm") {
