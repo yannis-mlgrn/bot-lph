@@ -36,12 +36,6 @@ bot.on('ready', () =>{
 })
 bot.on("messageCreate", message => {
 
-    function entierRandom(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min +1)) + min;
-    }
-
     if (message.author.bot) return;
     // when message begin by a !
     //if (message.content.indexOf("!") !== 0) return;
@@ -64,7 +58,7 @@ bot.on("messageCreate", message => {
         var msgatelier = new MessageEmbed()
             .setColor('#E70739')
             .setTitle('Liens importants pour les séances :')
-            .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif')
+            .setAuthor('Jacobot','https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif')
             .setDescription('lien visio : https://mdl29.net/visio \nlien framapad : https://annuel.framapad.org/p/LPH');
         channel.send({ embeds: [msgatelier] });  
         console.log(`[*] ${author} sent !atelier command`);
@@ -149,26 +143,7 @@ bot.on("messageCreate", message => {
             message.channel.send("https://cdn.discordapp.com/attachments/835565603636248586/856257280466616400/out.mp4");
             console.log(`[*] ${author} send !flm command`);
       }
-      if (command === "christian") {
 
-        const words = [
-        "sors, sors, sors !",
-        "Non de zeus",
-        "j'ai les fesses propre",
-        "faut faire ça propre",
-        "oh ouai fesse moi avec une pelle",
-        "oh ouuuuaiiiii",
-        "es-ce que tu as besoin de les tripoter (les jars ^^)",
-        "elles se font exploser l'anus (en parlant des boites rachetées par Genesys)",
-        "c'est parti en sucette ","c'est les bouquins qui servent à caler les écrans au boulot",
-        "oh ouai fesse moi avec une pelle"
-        ,"ce soir il y a Arte",
-        "on est un peu à poil"
-    ]
-        message.channel.send(words[entierRandom(0,12)]);
-        console.log(`[*] ${author} send !flm command`);
-  }
-});
 
 // connect the bot ( YOU MUST HAVE A TOKEN )
 bot.login(config.token);
