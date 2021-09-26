@@ -36,7 +36,7 @@ bot.on('ready', () =>{
 })
 bot.on("messageCreate", message => {
 
-    if (message.author.bot) return;
+    if (message.author.bot){ return };
     // when message begin by a !
     //if (message.content.indexOf("!") !== 0) return;
 
@@ -123,8 +123,8 @@ bot.on("messageCreate", message => {
             sentMessage.react('🍺');
         });
         console.log(`[*] ${author} sent !yesno command`);
-      }
-      if (command === "activity") {
+    }
+    if (command === "activity") {
         // er --> "\"(.+?)\""g
         const mess = message.content.slice(config.prefix).trim();
         const z = mess.match(/"(.+?)"/g).map(v => v.replace(/^"(.+)"$/, "$1"));// get the content between "" 
@@ -135,15 +135,45 @@ bot.on("messageCreate", message => {
         .setColor('#E70739')
         .setTitle(author+" à mis a jours l'activité du bot !")
         .setAuthor('Jacobot',"https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif")
-        .setDescription(`*nouvelle activitée* **-->** ${new_activity}`);
+        .setDescription(`*nouvelle activitée* **-->** ${new_activity}`)
         channel.send({ embeds: [msgact] });  
         console.log(`[*] ${author} send !activity command\n    -> New activity : ${new_activity}`);
-      }
-      if (command === "flm") {
-            message.channel.send("https://cdn.discordapp.com/attachments/835565603636248586/856257280466616400/out.mp4");
-            console.log(`[*] ${author} send !flm command`);
-      }
+    }
+    if (command === "flm") {
+        message.channel.send("https://cdn.discordapp.com/attachments/835565603636248586/856257280466616400/out.mp4");
+        console.log(`[*] ${author} send !flm command`);
+    }
+    if (command === "christian"){
+        const words = [
+        "sors, sors, sors !",
+        "Non de zeus",
+        "j'ai les fesses propre",
+        "faut faire ça propre",
+        "oh ouai fesse moi avec une pelle",
+        "yess",
+        "oh ouuuuaiiiii",
+        "c'est du code ancien",
+        "c'est de la vieille technologie",
+        "on est un peu à poil",
+        "euh ....",
+        "ce soir il y a Arte",
+        "oh putain",
+        "c'est les bouquins qui servent à caler les écrans au boulot",
+        "rès très intéressant",
+        "c'est parti en sucette ",
+        "es-ce que tu as besoin de les tripoter (les jars ^^)",
+        "elles se font exploser l'anus (en parlant des boites rachetées par Genesys)",
+        "toc toc toc",
+        "c'est la folle de à coté "
+        ];
 
+        function entierAleatoire(min, max){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        message.channel.send(words[entierAleatoire(1,20)]);
+    }
+
+})
 
 // connect the bot ( YOU MUST HAVE A TOKEN )
 bot.login(config.token);
