@@ -138,7 +138,6 @@ bot.on("messageCreate", message => {
         .setDescription(`*nouvelle activitée* **-->** ${new_activity}`)
         channel.send({ embeds: [msgact] });  
         console.log(`[*] ${author} send !activity command\n    -> New activity : ${new_activity}`);
-<<<<<<< HEAD
     }
     if (command === "flm") {
         message.channel.send("https://cdn.discordapp.com/attachments/835565603636248586/856257280466616400/out.mp4");
