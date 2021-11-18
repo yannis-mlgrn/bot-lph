@@ -105,7 +105,11 @@ bot.on("messageCreate", message => {
         channel.send({ embeds: [msgrandom] });  
     }
     if (message.content.match(/quoi\s*[?!.,]*\s*$/i) && message.author.id != '299165255639105536') { // if the message finish by quoi the bot reply "feur !". I use a regular expression
-        message.channel.send("feur !"); // then send "feur !"
+        message.reply("Feur !!")
+        message.reply({files: ["./asset/attends_quoi.mp4"]});
+        console.log(`[*] ${author} sent feur command`);
+
+        
     }
     if (command === "yesno") {
         // er --> "\"(.+?)\""g
