@@ -20,4 +20,4 @@ see all command ( in discord )
 
 ### how to add Jacobot bot to your discord server
 
-- https://discord.com/api/oauth2/authorize?client_id=828354662481788958&permissions=8&scope=bot
+- https://discord.com/api/oauth2/authorize?client_id=828354662481788958&permissions=8&scope=applications.commands%20bot
