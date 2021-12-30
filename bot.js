@@ -168,13 +168,14 @@ bot.on("messageCreate", message => {
         "es-ce que tu as besoin de les tripoter (les jars ^^)",
         "elles se font exploser l'anus (en parlant des boites rachetées par Genesys)",
         "toc toc toc",
-        "c'est la folle de à coté "
+        "c'est la folle de à coté ",
+	"Ils le vendent à poils"
         ];
 
         function entierAleatoire(min, max){
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        message.channel.send(words[entierAleatoire(1,20)]);
+        message.channel.send(words[entierAleatoire(1,21)]);
     }
 
 })
